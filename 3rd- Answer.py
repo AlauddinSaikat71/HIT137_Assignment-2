@@ -6,16 +6,16 @@ def draw_tree(branch_length, right_angle, left_angle, depth, reduction_factor):
         turtle.forward(branch_length)
         
         # Draw the right branch
-        turtle.right(angle)
-        draw_tree(branch_length * reduction_factor, angle, depth - 1, reduction_factor)
+        turtle.right(right_angle)
+        draw_tree(branch_length * reduction_factor, right_angle, left_angle, depth - 1, reduction_factor)
         
-        # Draw the left branch
-        turtle.left(angle * 2)  # Turn left by double the angle
-        draw_tree(branch_length * reduction_factor, angle, depth - 1, reduction_factor)
+        # Return to the main branch and draw the left branch
+        turtle.left(right_angle + left_angle)
+        draw_tree(branch_length * reduction_factor, right_angle, left_angle, depth - 1, reduction_factor)
         
-        # Return to the original position and orientation
-        turtle.right(angle)  # Turn back to the right
-        turtle.backward(branch_length)  # Go back to the previous branch
+        # Return to the original orientation and position
+        turtle.right(left_angle)
+        turtle.backward(branch_length)
 
 def main():
     # Get user input
@@ -26,10 +26,10 @@ def main():
     reduction_factor = float(input("Enter the branch length reduction factor (e.g., 0.7): "))
 
     # Set up the turtle
-    turtle.speed(0)  # Fastest drawing speed
-    turtle.left(90)  # Start facing upwards
+    turtle.speed(0)
+    turtle.left(90)
     turtle.up()
-    turtle.backward(100)  # Move the turtle down to start drawing
+    turtle.backward(100)
     turtle.down()
     
     # Draw the tree
@@ -40,3 +40,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
