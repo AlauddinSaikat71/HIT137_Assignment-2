@@ -1,6 +1,6 @@
 import turtle
 
-def draw_tree(branch_length, angle, depth, reduction_factor):
+def draw_tree(branch_length, right_angle, left_angle, depth, reduction_factor):
     if depth > 0:
         # Draw the main branch
         turtle.forward(branch_length)
@@ -33,7 +33,7 @@ def main():
     turtle.down()
     
     # Draw the tree
-    draw_tree(starting_length, right_angle, recursion_depth, reduction_factor)
+    draw_tree(starting_length, right_angle, left_angle, recursion_depth, reduction_factor)
     
     # Finish up
     turtle.done()
