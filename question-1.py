@@ -65,9 +65,9 @@ def main():
         f.write(decrypted_text)
 
     # Print preview (first 300 characters only)
-    print("\nOriginal Text:\n", original_text[:300])
-    print("\nEncrypted Text:\n", encrypted_text[:300])
-    print("\nDecrypted Text:\n", decrypted_text[:300])
+    print("\nOriginal Text:\n", original_text)
+    print("\nEncrypted Text:\n", encrypted_text)
+    print("\nDecrypted Text:\n", decrypted_text)
     print("\nDecryption successful:", check_decryption(original_text, decrypted_text))
 
 if __name__ == "__main__":
