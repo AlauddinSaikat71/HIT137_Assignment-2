@@ -1,43 +1,51 @@
 import turtle
 
-def draw_tree(branch_length, right_angle, left_angle, depth, reduction_factor):
+def draw_tree(branch_length, right_angle, left_angle, depth, reduction_factor, max_depth):
     if depth > 0:
-        # Draw the main branch
+        # Set color: brown for trunk, green for everything else
+        if depth == max_depth:
+            turtle.color("saddlebrown")  # trunk
+        else:
+            turtle.color("green")        # branches + leaves
+        # Draw the current branch
         turtle.forward(branch_length)
-        
-        # Draw the right branch
+
+        # Right branch
         turtle.right(right_angle)
-        draw_tree(branch_length * reduction_factor, right_angle, left_angle, depth - 1, reduction_factor)
-        
-        # Return to the main branch and draw the left branch
+        draw_tree(branch_length * reduction_factor, right_angle, left_angle, depth - 1, reduction_factor, max_depth)
+
+        # Left branch
         turtle.left(right_angle + left_angle)
-        draw_tree(branch_length * reduction_factor, right_angle, left_angle, depth - 1, reduction_factor)
-        
-        # Return to the original orientation and position
+        draw_tree(branch_length * reduction_factor, right_angle, left_angle, depth - 1, reduction_factor, max_depth)
+
+        # Return to the previous position and direction
         turtle.right(left_angle)
         turtle.backward(branch_length)
 
 def main():
-    # Get user input
+    # User input
     left_angle = float(input("Enter the left branch angle (in degrees): "))
     right_angle = float(input("Enter the right branch angle (in degrees): "))
     starting_length = float(input("Enter the starting branch length: "))
     recursion_depth = int(input("Enter the recursion depth: "))
     reduction_factor = float(input("Enter the branch length reduction factor (e.g., 0.7): "))
 
-    # Set up the turtle
+    # Turtle setup
     turtle.speed(0)
+    
+    turtle.pensize(2)
     turtle.left(90)
     turtle.up()
     turtle.backward(100)
     turtle.down()
-    
+
     # Draw the tree
-    draw_tree(starting_length, right_angle, left_angle, recursion_depth, reduction_factor)
-    
-    # Finish up
+    draw_tree(starting_length, right_angle, left_angle, recursion_depth, reduction_factor, recursion_depth)
+
+    turtle.hideturtle()
     turtle.done()
 
 if __name__ == "__main__":
     main()
+
 
